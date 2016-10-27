@@ -1,15 +1,65 @@
-//your variable declarations here
+//your variable declarations here\
+Star[]Kirby = new star[50];
+Spaceship Nebula;
 public void setup() 
 {
-  //your code here
+  background (0);
+  Nebula = new Spaceship();
+  size (400,400);
+  for (i = 0; i < Kirby.length; i++);
+  {
+    Kirby[i] = new Star();
+  }
 }
 public void draw() 
 {
-  //your code here
+  
 }
-class SpaceShip   
+class star
+{
+  private double myX,myY,my2X,my2Y;
+  public star()
+}
+class SpaceShip extends floater  
 {   
-    //your code here
+   Spaceship()
+   {
+   Corners = 13;
+   xCorners = new int[corners];
+   yCorners = new int[corners];
+   xCorners[0] = 17*factor;
+   yCorners[0] = 0*factor;
+   xCorners[1] = 12*factor;
+   yCorners[1] = 5*factor;
+   xCorners[2] = -6*factor;
+   yCorners[2] = 5*factor;
+   xCorners[3] = -6*factor;
+   yCorners[3] = 9*factor;
+   xCorners[4] = -17*factor;
+   yCorners[4] = 9*factor;
+   xCorners[5] = -17*factor;
+   yCorners[5] = 2*factor;
+   xCorners[6] = -7*factor;
+   yCorners[6] = 2*factor;
+   xCorners[7] = -7*factor;
+   yCorners[7] = -2*factor;
+   xCorners[8] = -17*factor;
+   yCorners[8] = -2*factor;
+   xCorners[9] = -17*factor;
+   yCorners[9] = -9*factor;
+   xCorners[10] = -6*factor;
+   yCorners[10] = -9*factor;
+   xCorners[11] = -6*factor;
+   yCorners[11] = -5*factor;
+   xCorners[12] = 12*factor;
+   yCorners[12] = -5*factor;
+   myColor = color(255,182,193);
+    myCenterX = 200;
+    myCenterY = 200;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    myPointDirection = 0;
+    stroke (0,0,0);
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -87,4 +137,5 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
+}
+  abstract class stars{} 
