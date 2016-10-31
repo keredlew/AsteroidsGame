@@ -1,25 +1,46 @@
 //your variable declarations here\
-Star[]Kirby = new star[50];
+ArrayList<Asteroids> obstacles = new ArrayList<Asteroids>();
+Star []Kirby;
 Spaceship Nebula;
+int factor = 2;
+int astFactor = 5;
 public void setup() 
 {
   background (0);
   Nebula = new Spaceship();
-  size (400,400);
+  size (500,500);
+  Kirby = new Star[(int)(Math.random()*150)+30];
   for (i = 0; i < Kirby.length; i++);
   {
     Kirby[i] = new Star();
   }
+  for (int j=0; j<(int)(Math.random()*5)+10; j++)
+  {
+    obstacles.add(new Asteroids());
+  }
 }
 public void draw() 
 {
-  
+  background(0,0,0);
+  for (int i = 0, i < Kirby.length; i++
+  {
+    Kirby[i].show();
+  }
+  for (int j=0; j<obstacles.size(); k++)
+  {
+    obstacles.get(j).show();
+    obstacles.get(j).move();
+  }
+  for (int k = 0; k<obstacles.size(); k++)
+  {
+    if dist(Nebula.getX(),Nebula.getY(),obstacles.get(k).getX,obstacles.getY())<20)
+  {
+    obstacles.remove(k);
+  }
 }
-class star
-{
-  private double myX,myY,my2X,my2Y;
-  public star()
-}
+Nebula.move();
+Nebula.keyPressed();
+
 class SpaceShip extends floater  
 {   
    Spaceship()
