@@ -1,51 +1,77 @@
-//your variable declarations here\
-ArrayList<Asteroids> obstacles = new ArrayList<Asteroids>();
-Star []Kirby;
-Spaceship Nebula;
-int factor = 2;
-int astFactor = 5;
+SpaceShip Derk;
+Star [] Lew;
 public void setup() 
 {
-  background (0);
-  Nebula = new Spaceship();
   size (500,500);
-  Kirby = new Star[(int)(Math.random()*150)+30];
-  for (i = 0; i < Kirby.length; i++);
+  background(0);
+  Derk = new SpaceShip();
+  
+  Lew = new Star[5000];
+  for(int i = 0; i < 1000; i++)
   {
-    Kirby[i] = new Star();
-  }
-  for (int j=0; j<(int)(Math.random()*5)+10; j++)
-  {
-    obstacles.add(new Asteroids());
+    Lew[i] = new Star();
   }
 }
 public void draw() 
 {
-  background(0,0,0);
-  for (int i = 0, i < Kirby.length; i++
+  background(1);
+  Derk.show();
+  Derk.move();
+  
+  for (int i = 0; i < 1000; i++)
   {
-    Kirby[i].show();
+    Lew[i].show();
   }
-  for (int j=0; j<obstacles.size(); k++)
+public void keyPressed()
+{
+  if(keyCode == 'w')
   {
-    obstacles.get(j).show();
-    obstacles.get(j).move();
+    Derk.accelerate(0.08);
   }
-  for (int k = 0; k<obstacles.size(); k++)
+  else if(keyCode == 's')
   {
-    if dist(Nebula.getX(),Nebula.getY(),obstacles.get(k).getX,obstacles.getY())<20)
+    Derk.accelerate(-0.08);
+  }
+  else if (keyCode == 'a')
   {
-    obstacles.remove(k);
+    Derk.rotate(-25);
+  }
+  else if (keyCode == 'd')
+  {
+    Derk.rotate(25);
+  }
+  else if (key == ' ')
+  {
+    Derk.setX((int)(Math.random()*501));
+    Derk.setY((int)(Math.random()*501));
+    Derk.setPointDirection((int)(Math.random()*361));
+  }
+  else if(key == 'e')
+  {
+    Derk.setDirectionX(0);
+    Derk.setDirectionY(0);
   }
 }
-Nebula.move();
-Nebula.keyPressed();
-
-class SpaceShip extends floater  
+public class Star
+{
+  private int posX, posY, mySize;
+  public Star()
+  {
+    posX = ((int)(Math.random()*501));
+    posY = ((int)(Math.random()*501));
+    mySize = ((int)(Math.random()*6));
+  }
+  public void show()
+  {
+    noStroke();
+    fill(170, 174, 170);
+    ellipse(posX, posY, mySize, mySize);
+  }
+}
+public class SpaceShip extends Floater  
 {   
-   Spaceship()
-   {
-   Corners = 13;
+    public SpaceShip(){
+       Corners = 13;
    xCorners = new int[corners];
    yCorners = new int[corners];
    xCorners[0] = 17*factor;
@@ -75,12 +101,23 @@ class SpaceShip extends floater
    xCorners[12] = 12*factor;
    yCorners[12] = -5*factor;
    myColor = color(255,182,193);
-    myCenterX = 200;
-    myCenterY = 200;
+    myCenterX = 250;
+    myCenterY = 250;
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
     stroke (0,0,0);
+    }
+    public void setX(int x){ myCenterX = x;}
+    public int getX(){ return (int)myCenterX;}
+    public void setY(int y){ myCenterY = y;}
+    public int getY(){ return (int)myCenterY;}
+    public void setDirectionX(double x){ myDirectionX = x;}
+    public double getDirectionX(){ return myDirectionX;}
+    public void setDirectionY(double y){ myDirectionY = y;}
+    public double getDirectionY(){ return myDirectionY;}
+    public void setPointDirection(int degrees){ myPointDirection = degrees;}
+    public double getPointDirection(){ return myPointDirection;}
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -116,7 +153,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     //rotates the floater by a given number of degrees    
     myPointDirection+=nDegreesOfRotation;   
   }   
-  public void move ()   //move the floater in the current direction of travel
+  public void move()   //move the floater in the current direction of travel
   {      
     //change the x and y coordinates by myDirectionX and myDirectionY       
     myCenterX += myDirectionX;    
@@ -158,5 +195,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-}
-  abstract class stars{} 
