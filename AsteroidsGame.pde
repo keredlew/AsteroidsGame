@@ -1,57 +1,68 @@
-SpaceShip Derk;
-Star [] Lew;
+SpaceShip kirby;
+Star [] stars;
+Asteroid [] asteroids;
+
 public void setup() 
 {
   size (500,500);
   background(0);
-  Derk = new SpaceShip();
+  kirby = new SpaceShip();
   
-  Lew = new Star[5000];
+  stars = new Star[5000];
   for(int i = 0; i < 1000; i++)
   {
-    Lew[i] = new Star();
+    stars[i] = new Star();
+  }
+  
+  asteroids = new Asteroid[50];
+  for(int i = 0; i < 25; i++)
+  {
+    asteroids[i] = new Asteroid();
   }
 }
+
 public void draw() 
 {
-  background(1);
-  Derk.show();
-  Derk.move();
+  background(0);
+  kirby.show();
+  kirby.move();
   
   for (int i = 0; i < 1000; i++)
   {
-    Lew[i].show();
+    stars[i].show();
   }
-public void keyPressed()
-{
-  if(keyCode == 'w')
+
+  for (int i = 0; i < 25; i++)
   {
-    Derk.accelerate(0.08);
-  }
-  else if(keyCode == 's')
-  {
-    Derk.accelerate(-0.08);
-  }
-  else if (keyCode == 'a')
-  {
-    Derk.rotate(-25);
-  }
-  else if (keyCode == 'd')
-  {
-    Derk.rotate(25);
-  }
-  else if (key == ' ')
-  {
-    Derk.setX((int)(Math.random()*501));
-    Derk.setY((int)(Math.random()*501));
-    Derk.setPointDirection((int)(Math.random()*361));
-  }
-  else if(key == 'e')
-  {
-    Derk.setDirectionX(0);
-    Derk.setDirectionY(0);
+    asteroids[i].show();
+    asteroids[i].move();
   }
 }
+
+public void keyPressed() 
+{
+  if(keyPressed == true && key == 'a')
+  {
+    kirby.rotate(-10);
+  }
+  if(keyPressed == true && key == 'd')
+  {
+    kirby.rotate(10);
+  }
+  if(keyPressed == true && key == 'w')
+  {
+    kirby.accelerate(0.50);
+  }
+  if(keyPressed == true && key == 's')
+  {
+    kirby.myDirectionY = 0;
+    kirby.myDirectionX =0;
+    kirby.myPointDirection = Math.random()*360;
+    kirby.myCenterX = Math.random()*500;
+    kirby.myCenterY = Math.random()*500;
+  }
+}
+
 public class Star
 {
   private int posX, posY, mySize;
@@ -68,38 +79,39 @@ public class Star
     ellipse(posX, posY, mySize, mySize);
   }
 }
+
 public class SpaceShip extends Floater  
 {   
     public SpaceShip(){
-       Corners = 13;
+    corners = 13;
    xCorners = new int[corners];
    yCorners = new int[corners];
-   xCorners[0] = 17*factor;
-   yCorners[0] = 0*factor;
-   xCorners[1] = 12*factor;
-   yCorners[1] = 5*factor;
-   xCorners[2] = -6*factor;
-   yCorners[2] = 5*factor;
-   xCorners[3] = -6*factor;
-   yCorners[3] = 9*factor;
-   xCorners[4] = -17*factor;
-   yCorners[4] = 9*factor;
-   xCorners[5] = -17*factor;
-   yCorners[5] = 2*factor;
-   xCorners[6] = -7*factor;
-   yCorners[6] = 2*factor;
-   xCorners[7] = -7*factor;
-   yCorners[7] = -2*factor;
-   xCorners[8] = -17*factor;
-   yCorners[8] = -2*factor;
-   xCorners[9] = -17*factor;
-   yCorners[9] = -9*factor;
-   xCorners[10] = -6*factor;
-   yCorners[10] = -9*factor;
-   xCorners[11] = -6*factor;
-   yCorners[11] = -5*factor;
-   xCorners[12] = 12*factor;
-   yCorners[12] = -5*factor;
+   xCorners[0] = 17;
+   yCorners[0] = 0;
+   xCorners[1] = 12;
+   yCorners[1] = 5;
+   xCorners[2] = -6;
+   yCorners[2] = 5;
+   xCorners[3] = -6;
+   yCorners[3] = 9;
+   xCorners[4] = -17;
+   yCorners[4] = 9;
+   xCorners[5] = -17;
+   yCorners[5] = 2;
+   xCorners[6] = -7;
+   yCorners[6] = 2;
+   xCorners[7] = -7;
+   yCorners[7] = -2;
+   xCorners[8] = -17;
+   yCorners[8] = -2;
+   xCorners[9] = -17;
+   yCorners[9] = -9;
+   xCorners[10] = -6;
+   yCorners[10] = -9;
+   xCorners[11] = -6;
+   yCorners[11] = -5;
+   xCorners[12] = 12;
+   yCorners[12] = -5;
    myColor = color(255,182,193);
     myCenterX = 250;
     myCenterY = 250;
@@ -108,6 +120,7 @@ public class SpaceShip extends Floater
     myPointDirection = 0;
     stroke (0,0,0);
     }
+    
     public void setX(int x){ myCenterX = x;}
     public int getX(){ return (int)myCenterX;}
     public void setY(int y){ myCenterY = y;}
@@ -119,6 +132,57 @@ public class SpaceShip extends Floater
     public void setPointDirection(int degrees){ myPointDirection = degrees;}
     public double getPointDirection(){ return myPointDirection;}
 }
+
+public class Asteroid extends Floater
+{
+  private int rotSpeed;
+  public Asteroid()
+  {
+    corners = 6;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -11;
+    yCorners[0] = -8;
+    xCorners[1] = 7;
+    yCorners[1] = -8;
+    xCorners[2] = 9;
+    yCorners[2] = 0;
+    xCorners[3] = 6;
+    yCorners[3] = 10; 
+    xCorners[4] = -11;
+    yCorners[4] = 8;
+    xCorners[5] = -14;
+    yCorners[5] = 0;
+    myColor = 1;
+    myCenterX = ((int)(Math.random()*501));
+    myCenterY = ((int)(Math.random()*501));
+    myDirectionX = (Math.random()*4);
+    myDirectionY = (Math.random()*4);
+    myPointDirection = ((int)(Math.random()*361));
+    rotSpeed = ((int)(Math.random()*5));
+    
+  }
+  
+  public void move()
+  {
+    rotate((int)(rotSpeed));
+    super.move();
+  }
+
+    public void setX(int x){ myCenterX = x;}
+    public int getX(){ return (int)myCenterX;}
+    public void setY(int y){ myCenterY = y;}
+    public int getY(){ return (int)myCenterY;}
+    public void setDirectionX(double x){ myDirectionX = x;}
+    public double getDirectionX(){ return myDirectionX;}
+    public void setDirectionY(double y){ myDirectionY = y;}
+    public double getDirectionY(){ return myDirectionY;}
+    public void setPointDirection(int degrees){ myPointDirection = degrees;}
+    public double getPointDirection(){ return myPointDirection;}
+
+}
+
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -153,7 +217,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     //rotates the floater by a given number of degrees    
     myPointDirection+=nDegreesOfRotation;   
   }   
-  public void move()   //move the floater in the current direction of travel
+  public void move ()   //move the floater in the current direction of travel
   {      
     //change the x and y coordinates by myDirectionX and myDirectionY       
     myCenterX += myDirectionX;    
