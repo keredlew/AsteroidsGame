@@ -1,8 +1,8 @@
 
 body {
-    background-color: rgb(255,204,0);
-    color: rgb(0,0,0);
-    font-family: "Open Sans", sans-serif;
+    background-color: rgb(0,48,64);
+    color: rgb(179,194,95);
+    font-family: "blenny", blenny;
     text-align: center;
 }
 
@@ -13,11 +13,11 @@ body {
 }
 
 header {
-	
+	font-style: factoria;	
 }
 
 footer {
-	font-style: italic;
+	font-style: factoria;
 	font-size: 90%;
 }
 
