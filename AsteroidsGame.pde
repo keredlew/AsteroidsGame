@@ -5,7 +5,7 @@ Asteroid [] asteroids;
 public void setup() 
 {
   size (500,500);
-  background(0);
+  background(255,255,255);
   kirby = new SpaceShip();
   
   stars = new Star[5000];
@@ -138,22 +138,36 @@ public class Asteroid extends Floater
   private int rotSpeed;
   public Asteroid()
   {
-    corners = 6;
+    corners = 13;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = -11;
-    yCorners[0] = -8;
-    xCorners[1] = 7;
-    yCorners[1] = -8;
+    xCorners[0] = 9;
+    yCorners[0] = 0;
+    xCorners[1] = 10;
+    yCorners[1] = 3;
     xCorners[2] = 9;
-    yCorners[2] = 0;
+    yCorners[2] = 5;
     xCorners[3] = 6;
-    yCorners[3] = 10; 
-    xCorners[4] = -11;
-    yCorners[4] = 8;
-    xCorners[5] = -14;
-    yCorners[5] = 0;
-    myColor = 1;
+    yCorners[3] = 4; 
+    xCorners[4] = 3;
+    yCorners[4] = 2;
+    xCorners[5] = -3;
+    yCorners[5] = 2;
+    xCorners[6] = -6;
+    yCorners[6] = 4;
+    xCorners[7] = -9;
+    yCorners[7] = 5;
+    xCorners[8] = -10;
+    yCorners[8] = 3;
+    xCorners[9] = -9;
+    yCorners[9] = 0; 
+    xCorners[10] = -5;
+    yCorners[10] = -3;
+    xCorners[11] = 0;
+    yCorners[11] = -4;
+    xCorners[12] = 6;
+    yCorners[12] = -3;
+    myColor = color(255,204,0);
     myCenterX = ((int)(Math.random()*501));
     myCenterY = ((int)(Math.random()*501));
     myDirectionX = (Math.random()*4);
@@ -258,4 +272,4 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     }   
     endShape(CLOSE);  
   }   
-} 
+}
