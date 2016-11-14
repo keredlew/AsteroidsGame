@@ -5,7 +5,7 @@ Asteroid [] asteroids;
 public void setup() 
 {
   size (500,500);
-  background(255,255,255);
+  background(0);
   kirby = new SpaceShip();
   
   stars = new Star[5000];
@@ -168,15 +168,17 @@ public class Asteroid extends Floater
     xCorners[12] = 6;
     yCorners[12] = -3;
     myColor = color(255,204,0);
-    myCenterX = ((int)(Math.random()*501));
-    myCenterY = ((int)(Math.random()*501));
-    myDirectionX = (Math.random()*4);
-    myDirectionY = (Math.random()*4);
-    myPointDirection = ((int)(Math.random()*361));
-    rotSpeed = ((int)(Math.random()*5));
+    myCenterX = (int)(Math.random()*501);
+    myCenterY = (int)(Math.random()*501);
+    myPointDirection = 0;
+    myDirectionX = (int)(Math.random()*4 - 2);
+    if(myDirectionX == 0) {myDirectionX++;}
+    myDirectionY = (int)(Math.random()*4 - 2);
+    if(myDirectionY == 0) {myDirectionY++;}
+    rotSpeed = (int)(Math.random()*3-5);
+    if(rotSpeed == 69) {rotSpeed ++;}
     
   }
-  
   public void move()
   {
     rotate((int)(rotSpeed));
