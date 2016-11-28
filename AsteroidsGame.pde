@@ -1,7 +1,6 @@
 SpaceShip kirby;
 Star [] stars;
-Asteroid [] asteroids;
-
+ArrayList <Asteroids> poo;
 public void setup() 
 {
   size (500,500);
@@ -13,11 +12,10 @@ public void setup()
   {
     stars[i] = new Star();
   }
-  
-  asteroids = new Asteroid[50];
-  for(int i = 0; i < 25; i++)
+  poo = new ArrayList <Asteroids>();
+  for (int j = 0; j < 20; j++)
   {
-    asteroids[i] = new Asteroid();
+    poo.add(new Asteroids());
   }
 }
 
@@ -32,13 +30,19 @@ public void draw()
     stars[i].show();
   }
 
-  for (int i = 0; i < 25; i++)
+  for (int j = 0; j < 20; j++)
   {
-    asteroids[i].show();
-    asteroids[i].move();
-  }
+    poo.get(j).show();
+    poo.get(j).move();
+  
+    double distance = dist(kirby.getX(),kirby.getY(),poo.get(j).getX(), poo.get(j).getY());
+    if(distance < 20)
+    {
+      poo.remove(j);
+    poo.add(new Asteroids());
+ }
 }
-
+}
 public void keyPressed() 
 {
   if(keyPressed == true && key == 'a')
@@ -133,10 +137,10 @@ public class SpaceShip extends Floater
     public double getPointDirection(){ return myPointDirection;}
 }
 
-public class Asteroid extends Floater
+public class Asteroids extends Floater
 {
   private int rotSpeed;
-  public Asteroid()
+  public Asteroids()
   {
     corners = 13;
     xCorners = new int[corners];
@@ -275,3 +279,4 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 }
+  
