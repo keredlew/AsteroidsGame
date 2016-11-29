@@ -79,7 +79,7 @@ public class Star
   public void show()
   {
     noStroke();
-    fill(170, 174, 170);
+    fill(50, 50, 250);
     ellipse(posX, posY, mySize, mySize);
   }
 }
